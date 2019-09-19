@@ -17,8 +17,11 @@ public class App {
 			Properties prop = new Properties();
 			prop.load(fis);
 
-			Connection conn = DriverManager.getConnection(
-					prop.getProperty("db.url"), prop.getProperty("db.user"), prop.getProperty("db.password"));
+			String url = prop.getProperty("db.url");
+			String user = prop.getProperty("db.user");
+			String password = prop.getProperty("db.password");
+
+			Connection conn = DriverManager.getConnection(url, user, password);
 
 			if (conn != null) {
 				System.out.println("Connected to database.");
