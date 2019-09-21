@@ -1,9 +1,23 @@
 package com.voronov.Entities;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "books")
 public class Book {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "name")
 	private String name;
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "author_id")
 	private String author;
+
+	public Book() {
+	}
 
 	public Book(int id, String name, String author) {
 		this.id	= id;
@@ -33,5 +47,10 @@ public class Book {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
 	}
 }
